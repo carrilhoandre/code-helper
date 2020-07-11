@@ -17,6 +17,7 @@ def generate():
     folders = prepareEnvironment(data)
     generateInfraMongoFiles(env,folders,data)
     generateInfraBusFiles(env,folders,data)
+    generateApiFiles(env,folders,data)
 
     result = {}
     result["filesCreated"] = 52
@@ -28,7 +29,8 @@ def createDirIfNotExists(name):
         os.makedirs(name)
 
 def prepareEnvironment(data):
-    shutil.rmtree("output", ignore_errors=False, onerror=None)
+    if os.path.exists("output"):
+        shutil.rmtree("output", ignore_errors=False, onerror=None)
     folders = {}
 
     folders["apiFolder"] = "output/"+ data["Name"]+"/"+data["Name"]+".Api"
@@ -36,7 +38,9 @@ def prepareEnvironment(data):
     folders["infraMongoFolder"] = "output/"+ data["Name"]+"/"+data["Name"]+".Infrastructure.MongoDb"
     folders["infraBusFolder"] = "output/"+ data["Name"]+"/"+data["Name"]+".Infrastructure.Bus"
 
-    createDirIfNotExists(folders["apiFolder"])
+    createDirIfNotExists(folders["apiFolder"] + "/Configurations")
+    createDirIfNotExists(folders["apiFolder"] + "/Controllers")
+    createDirIfNotExists(folders["apiFolder"] + "/Properties")
     createDirIfNotExists(folders["domainFolder"])
     createDirIfNotExists(folders["infraMongoFolder"] + "/Repositories")
     createDirIfNotExists(folders["infraMongoFolder"] + "/Contexts")
@@ -68,3 +72,44 @@ def generateInfraBusFiles(env, folders,data):
 
     generateFile(env.get_template('Infra/Bus/InMemoryBus.cs').render(projectNamespace=data["ProjectNamespace"]),
                  folders["infraBusFolder"] +"/"+ "InMemoryBus.cs")
+
+def generateApiFiles(env, folders,data):
+
+    generateFile(env.get_template('Api/ApiProject.csproj').render(projectNamespace=data["ProjectNamespace"],  dotnetVersion = data["DotNetVersion"]),
+                 folders["apiFolder"]  +"/" +data["Name"]+".Api.csproj")
+
+    generateFile(env.get_template('Api/Startup.cs').render(projectNamespace=data["ProjectNamespace"]),
+                 folders["apiFolder"]  +"/Startup.cs")
+
+    generateFile(env.get_template('Api/Program.cs').render(projectNamespace=data["ProjectNamespace"]),
+                 folders["apiFolder"]  +"/Program.cs")
+
+    generateFile(env.get_template('Api/Dockerfile').render(projectNamespace=data["ProjectNamespace"]),
+                 folders["apiFolder"]  +"/Dockerfile")
+
+    generateFile(env.get_template('Api/appsettings.json').render(),
+                 folders["apiFolder"]  +"/appsettings.json")
+    
+    generateFile(env.get_template('Api/appsettings.json').render(),
+                 folders["apiFolder"]  +"/appsettings.Development.json")
+    
+    generateFile(env.get_template('Api/appsettings.json').render(),
+                 folders["apiFolder"]  +"/appsettings.Production.json")
+
+    generateFile(env.get_template('Api/SwaggerConfig.cs').render(projectNamespace=data["ProjectNamespace"], author=data["Author"], authorEmail=data["AuthorEmail"]),
+                 folders["apiFolder"]  +"/Configurations/SwaggerConfig.cs")
+
+    generateFile(env.get_template('Api/SwaggerFilter.cs').render(projectNamespace=data["ProjectNamespace"]),
+                 folders["apiFolder"]  +"/Configurations/SwaggerIgnoreFilter.cs")
+
+    generateFile(env.get_template('Api/launchSettings.json').render(),
+                 folders["apiFolder"]  +"/Properties/launchSettings.json")
+
+    generateFile(env.get_template('Api/ApiController.cs').render(projectNamespace=data["ProjectNamespace"]),
+                 folders["apiFolder"]  +"/Controllers/ApiController.cs")
+
+    for x in data["Entities"]:
+        generateFile(env.get_template('Api/Controller.cs').render(className=x["Name"], projectNamespace = data["ProjectNamespace"], classNameLower=x["Name"].lower() ),
+                  folders["apiFolder"]  +"/Controllers/" + x["Name"] + "Controller.cs")
+
+        

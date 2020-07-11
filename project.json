@@ -98,5 +98,7 @@
     "SaveMethod": null,
     "WebApi": {
         "UseCompression": true
-    }
+    },
+    "Author": "André Carrilho",
+    "AuthorEmail": "andrecarrilho91@hotmail.com"
 }
