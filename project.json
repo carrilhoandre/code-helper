@@ -1,0 +1,102 @@
+{
+    "Id": 1,
+    "Name": "Payments",
+    "ProjectNamespace": "Payments",
+    "EntitiesName": "Entities",
+    "Entities": [{
+            "Id": 1,
+            "Name": "Cliente",
+            "Plural": "Clientes",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 2,
+            "Name": "Cidade",
+            "Plural": "Cidades",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "Estado",
+            "Plural": "Estados",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "Agendamento",
+            "Plural": "Agendamentos",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "BaixaReceber",
+            "Plural": "BaixasReceber",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "ContaReceber",
+            "Plural": "ContasReceber",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "FormaBaixaReceber",
+            "Plural": "FormasBaixaReceber",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "Usuario",
+            "Plural": "Usuarios",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "Horario",
+            "Plural": "Horarios",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "Estudio",
+            "Plural": "Estudios",
+            "ProjectId": 1,
+            "Project": null
+        },
+        {
+            "Id": 1,
+            "Name": "ClienteSite",
+            "Plural": "ClientesSite",
+            "ProjectId": 1,
+            "Project": null
+        }
+    ],
+    "DomainLayer": "Domain",
+    "InfraLayer": "Infrastructure",
+    "DataContext": "PagamentosContext",
+    "DatabaseName": "PagamentosDb",
+    "ConnectionStringName": "conPagamenos",
+    "DefaultVarcharMaxLenght": 255,
+    "FluentMappingClassName": "Map",
+    "DotNetVersion": "netcoreapp3.1",
+    "InsertMethod": null,
+    "UpdateMethod": null,
+    "DeleteMethod": null,
+    "ListMethod": null,
+    "FindMethod": null,
+    "DeleteRangeMethod": null,
+    "SaveMethod": null,
+    "WebApi": {
+        "UseCompression": true
+    }
+}

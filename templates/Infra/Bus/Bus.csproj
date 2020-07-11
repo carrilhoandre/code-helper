@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>{{dotnetVersion}}</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\{{projectNamespace}}.Domain\{{projectNamespace}}.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
