@@ -49,6 +49,7 @@ def prepareEnvironment(data):
     createDirIfNotExists(folders["domainFolder"]+ "/Events")
     createDirIfNotExists(folders["domainFolder"]+ "/Repositories")
     createDirIfNotExists(folders["domainFolder"]+ "/Results")
+    createDirIfNotExists(folders["domainFolder"]+ "/Enums")
     createDirIfNotExists(folders["infraMongoFolder"] + "/Repositories")
     createDirIfNotExists(folders["infraMongoFolder"] + "/Contexts")
     createDirIfNotExists(folders["infraBusFolder"])
@@ -90,6 +91,10 @@ def generateDomainFiles(env, folders, data):
                          folders["domainFolder"] +"/Commands/Validations/"+ x["Plural"] + "/Create" + x["Name"] + "Validation.cs")
             generateFile(env.get_template('Domain/Validation.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"], type = "Update"),
                          folders["domainFolder"] +"/Commands/Validations/"+ x["Plural"] + "/Update" + x["Name"] + "Validation.cs")
+
+    for e in data["Enums"]:
+        generateFile(env.get_template('Domain/Enum.cs').render(className=e["Name"], projectNamespace = data["ProjectNamespace"], values = e["Values"]),
+                 folders["domainFolder"] +"/Enums/" + e["Name"] + ".cs")        
 
 def generateInfraMongoFiles(env, folders, data):
     generateFile(env.get_template('Infra/Mongo/project.csproj').render(projectName=data["Name"], dotnetVersion = data["DotNetVersion"]),
@@ -149,7 +154,8 @@ def generateApiFiles(env, folders,data):
                  folders["apiFolder"]  +"/Controllers/ApiController.cs")
 
     for x in data["Entities"]:
-        generateFile(env.get_template('Api/Controller.cs').render(className=x["Name"], projectNamespace = data["ProjectNamespace"], classNameLower=x["Name"].lower() ),
+        if x["Type"] != "abstract class":
+            generateFile(env.get_template('Api/Controller.cs').render(className=x["Name"], projectNamespace = data["ProjectNamespace"], classNameLower=x["Name"].lower() ),
                   folders["apiFolder"]  +"/Controllers/" + x["Name"] + "Controller.cs")
 
         
