@@ -18,6 +18,7 @@ def generate():
     generateInfraMongoFiles(env,folders,data)
     generateInfraBusFiles(env,folders,data)
     generateApiFiles(env,folders,data)
+    generateDomainFiles(env,folders,data)
 
     result = {}
     result["filesCreated"] = 52
@@ -41,7 +42,13 @@ def prepareEnvironment(data):
     createDirIfNotExists(folders["apiFolder"] + "/Configurations")
     createDirIfNotExists(folders["apiFolder"] + "/Controllers")
     createDirIfNotExists(folders["apiFolder"] + "/Properties")
-    createDirIfNotExists(folders["domainFolder"])
+    createDirIfNotExists(folders["domainFolder"]+ "/Entities")
+    createDirIfNotExists(folders["domainFolder"]+ "/Commands/Handlers")
+    createDirIfNotExists(folders["domainFolder"]+ "/Commands/Inputs/Shared")
+    createDirIfNotExists(folders["domainFolder"]+ "/Commands/Validations/Shared")
+    createDirIfNotExists(folders["domainFolder"]+ "/Events")
+    createDirIfNotExists(folders["domainFolder"]+ "/Repositories")
+    createDirIfNotExists(folders["domainFolder"]+ "/Results")
     createDirIfNotExists(folders["infraMongoFolder"] + "/Repositories")
     createDirIfNotExists(folders["infraMongoFolder"] + "/Contexts")
     createDirIfNotExists(folders["infraBusFolder"])
@@ -51,6 +58,38 @@ def generateFile(content, fullPath):
     f = open(fullPath, "x")
     f.write(content)
     f.close()
+
+def generateDomainFiles(env, folders, data):
+    generateFile(env.get_template('Domain/IBaseRepository.cs').render(projectNamespace = data["ProjectNamespace"]),
+                 folders["domainFolder"] +"/Repositories/IBaseRepository.cs")
+    generateFile(env.get_template('Domain/DeleteCommand.cs').render(projectNamespace = data["ProjectNamespace"]),
+                 folders["domainFolder"] +"/Commands/Inputs/Shared/DeleteCommand.cs")
+    generateFile(env.get_template('Domain/DeleteValidation.cs').render(projectNamespace = data["ProjectNamespace"]),
+                 folders["domainFolder"] +"/Commands/Validations/Shared/DeleteValidation.cs")
+    for x in data["Entities"]:
+        generateFile(env.get_template('Domain/Entity.cs').render(className=x["Name"], projectNamespace = data["ProjectNamespace"],classType=x["Type"], fields = x["Fields"]),
+                 folders["domainFolder"] +"/Entities/" + x["Name"] + ".cs")
+        if x["InheritanceClass"]=="":
+            generateFile(env.get_template('Domain/IRepository.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"]),
+                         folders["domainFolder"] +"/Repositories/I" + x["Name"] + "Repository.cs")
+        if x["Type"]=="Class":
+            generateFile(env.get_template('Domain/Handler.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"]),
+                         folders["domainFolder"] +"/Commands/Handlers/" + x["Name"] + "Handler.cs")
+            createDirIfNotExists(folders["domainFolder"] +"/Commands/Inputs/" + x["Plural"])
+            generateFile(env.get_template('Domain/CommandBase.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"]),
+                         folders["domainFolder"] +"/Commands/Inputs/"+ x["Plural"] + "/" + x["Name"] + "Command.cs")
+            generateFile(env.get_template('Domain/Command.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"], type = "Create"),
+                         folders["domainFolder"] +"/Commands/Inputs/"+ x["Plural"] + "/Create" + x["Name"] + "Command.cs")
+            generateFile(env.get_template('Domain/Command.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"], type = "Update"),
+                         folders["domainFolder"] +"/Commands/Inputs/"+ x["Plural"] + "/Update" + x["Name"] + "Command.cs")
+            
+            createDirIfNotExists(folders["domainFolder"] +"/Commands/Validations/" + x["Plural"])
+            generateFile(env.get_template('Domain/ValidationBase.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"]),
+                         folders["domainFolder"] +"/Commands/Validations/"+ x["Plural"] + "/" + x["Name"] + "Validation.cs")
+            generateFile(env.get_template('Domain/Validation.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"], type = "Create"),
+                         folders["domainFolder"] +"/Commands/Validations/"+ x["Plural"] + "/Create" + x["Name"] + "Validation.cs")
+            generateFile(env.get_template('Domain/Validation.cs').render(className=x["Name"], plural= x["Plural"], projectNamespace = data["ProjectNamespace"], type = "Update"),
+                         folders["domainFolder"] +"/Commands/Validations/"+ x["Plural"] + "/Update" + x["Name"] + "Validation.cs")
 
 def generateInfraMongoFiles(env, folders, data):
     generateFile(env.get_template('Infra/Mongo/project.csproj').render(projectName=data["Name"], dotnetVersion = data["DotNetVersion"]),
@@ -63,7 +102,8 @@ def generateInfraMongoFiles(env, folders, data):
                  folders["infraMongoFolder"] +"/Repositories/BaseRepository.cs")
 
     for x in data["Entities"]:
-        generateFile(env.get_template('Infra/Mongo/Repository.cs').render(className=x["Name"], projectNamespace = data["ProjectNamespace"]),
+        if x["InheritanceClass"]=="":
+            generateFile(env.get_template('Infra/Mongo/Repository.cs').render(className=x["Name"], projectNamespace = data["ProjectNamespace"]),
                  folders["infraMongoFolder"] +"/Repositories/" + x["Name"] + "Repository.cs")
 
 def generateInfraBusFiles(env, folders,data):

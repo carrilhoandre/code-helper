@@ -5,82 +5,95 @@
     "EntitiesName": "Entities",
     "Entities": [{
             "Id": 1,
-            "Name": "Cliente",
-            "Plural": "Clientes",
-            "ProjectId": 1,
-            "Project": null
+            "Name": "Payment",
+            "Plural": "Payments",
+            "InheritanceClass": "",
+            "Type": "abstract class",
+            "Fields": [{
+                    "Name": "Number",
+                    "Type": "string",
+                    "DefaultValue": "Guid.NewGuid().ToString()",
+                    "List": true,
+                    "Create": false,
+                    "Update": false
+                },
+                {
+                    "Name": "Total",
+                    "Type": "decimal",
+                    "DefaultValue": "0",
+                    "List": true,
+                    "Create": true,
+                    "Update": false
+                },
+                {
+                    "Name": "Status",
+                    "Type": "EPaymentStatus",
+                    "DefaultValue": "EPaymentStatus.Created",
+                    "List": true,
+                    "Create": false,
+                    "Update": false
+                },
+                {
+                    "Name": "CreatedAt",
+                    "Type": "DateTime",
+                    "DefaultValue": "DateTime.Now",
+                    "List": true,
+                    "Create": false,
+                    "Update": false
+                },
+                {
+                    "Name": "CreatedAt",
+                    "Type": "DateTime",
+                    "DefaultValue": "DateTime.Now",
+                    "List": true,
+                    "Create": false,
+                    "Update": false
+                }
+            ]
         },
         {
-            "Id": 2,
-            "Name": "Cidade",
-            "Plural": "Cidades",
-            "ProjectId": 1,
-            "Project": null
+            "Name": "BoletoPayment",
+            "Plural": "BoletoPayments",
+            "Type": "Class",
+            "InheritanceClass": "Payment",
+            "Fields": []
         },
         {
-            "Id": 1,
-            "Name": "Estado",
-            "Plural": "Estados",
-            "ProjectId": 1,
-            "Project": null
+            "Name": "CreditCardPayment",
+            "Plural": "CreditCardPayments",
+            "Type": "Class",
+            "InheritanceClass": "Payment",
+            "Fields": []
         },
         {
-            "Id": 1,
-            "Name": "Agendamento",
-            "Plural": "Agendamentos",
-            "ProjectId": 1,
-            "Project": null
-        },
-        {
-            "Id": 1,
-            "Name": "BaixaReceber",
-            "Plural": "BaixasReceber",
-            "ProjectId": 1,
-            "Project": null
-        },
-        {
-            "Id": 1,
-            "Name": "ContaReceber",
-            "Plural": "ContasReceber",
-            "ProjectId": 1,
-            "Project": null
-        },
-        {
-            "Id": 1,
-            "Name": "FormaBaixaReceber",
-            "Plural": "FormasBaixaReceber",
-            "ProjectId": 1,
-            "Project": null
-        },
-        {
-            "Id": 1,
-            "Name": "Usuario",
-            "Plural": "Usuarios",
-            "ProjectId": 1,
-            "Project": null
-        },
-        {
-            "Id": 1,
-            "Name": "Horario",
-            "Plural": "Horarios",
-            "ProjectId": 1,
-            "Project": null
-        },
-        {
-            "Id": 1,
-            "Name": "Estudio",
-            "Plural": "Estudios",
-            "ProjectId": 1,
-            "Project": null
-        },
-        {
-            "Id": 1,
-            "Name": "ClienteSite",
-            "Plural": "ClientesSite",
-            "ProjectId": 1,
-            "Project": null
+            "Name": "DebitCardPayment",
+            "Plural": "DebitCardPayments",
+            "Type": "Class",
+            "InheritanceClass": "Payment",
+            "Fields": []
         }
     ],
+    "Enums": [{
+        "Id": 1,
+        "Name": "EPaymentStatus",
+        "Values": [{
+                "Name": "Reproved",
+                "Value": -1
+            },
+            {
+                "Name": "Created",
+                "Value": 0
+            },
+            {
+                "Name": "Pending",
+                "Value": 1
+            },
+            {
+                "Name": "Aproved",
+                "Value": 2
+            }
+        ]
+    }],
     "DomainLayer": "Domain",
     "InfraLayer": "Infrastructure",
     "DataContext": "PagamentosContext",
