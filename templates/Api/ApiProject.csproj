@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\{{projectNamespace}}.Domain\{{projectNamespace}}.Domain.csproj" />
-    <ProjectReference Include="..\{{projectNamespace}}.Infrastructure.DI\{{projectNamespace}}.Infrastructure.DI.csproj" />
+    <ProjectReference Include="..\{{ProjectNamespace}}.Domain\{{ProjectNamespace}}.Domain.csproj" />
+    <ProjectReference Include="..\{{ProjectNamespace}}.Infrastructure.DI\{{ProjectNamespace}}.Infrastructure.DI.csproj" />
   </ItemGroup>
 
 

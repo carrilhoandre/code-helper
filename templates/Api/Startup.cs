@@ -1,5 +1,5 @@
-using {{projectNamespace}}.Api.Configurations;
-using {{projectNamespace}}.Infrastructure.DI;
+using {{ProjectNamespace}}.Api.Configurations;
+using {{ProjectNamespace}}.Infrastructure.DI;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace {{projectNamespace}}.Api
+namespace {{ProjectNamespace}}.Api
 {
     public class Startup
     {
@@ -23,7 +23,7 @@ namespace {{projectNamespace}}.Api
             services.AddControllers();
             services.AddSwaggerConfiguration();
             services.AddMediatR(typeof(Startup));
-            services.Add{{projectNamespace}}(Configuration);
+            services.Add{{ProjectNamespace}}(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

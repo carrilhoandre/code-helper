@@ -1,4 +1,4 @@
-namespace {{projectNamespace}}.Domain.Enums
+namespace {{ProjectNamespace}}.Domain.Enums
 {
     public enum {{className}}
     {

@@ -1,7 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace {{projectNamespace}}.Api.Configurations
+namespace {{ProjectNamespace}}.Api.Configurations
 {
     public class SwaggerIgnoreFilter : ISchemaFilter
     {

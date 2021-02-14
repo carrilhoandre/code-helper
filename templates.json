@@ -1,0 +1,35 @@
+{
+    "BaseFileTemplates": [{
+            "TemplateFile": "Domain/IBaseRepository.cs",
+            "Type": "domain",
+            "Parameters": [{
+                "Name": "ProjectNamespace"
+            }],
+            "OutputPath": "Repositories/BaseRepository.cs"
+        },
+        {
+            "TemplateFile": "Domain/DeleteCommand.cs",
+            "Type": "domain",
+            "Parameters": [{
+                "Name": "ProjectNamespace"
+            }],
+            "OutputPath": "Commands/Inputs/Shared/DeleteCommand.cs"
+        },
+        {
+            "TemplateFile": "Domain/DeleteValidation.cs",
+            "Type": "domain",
+            "Parameters": [{
+                "Name": "ProjectNamespace"
+            }],
+            "OutputPath": "Commands/Validations/Shared/DeleteValidation.cs"
+        }
+    ],
+    "EntitiesFile": [{
+        "TemplateFile": "Domain/Entity.cs",
+        "Type": "domain",
+        "Parameters": [{
+            "Name": "ProjectNamespace"
+        }],
+        "OutputPath": "Repositories/BaseRepository.cs"
+    }]
+}

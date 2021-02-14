@@ -1,7 +1,7 @@
 using NetDevPack.Messaging;
 using System;
 
-namespace {{projectNamespace}}.Domain.Commands.Inputs.Shared
+namespace {{ProjectNamespace}}.Domain.Commands.Inputs.Shared
 {
     public class DeleteCommand : Command
     {

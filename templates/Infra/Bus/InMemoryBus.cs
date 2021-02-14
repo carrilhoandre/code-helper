@@ -4,7 +4,7 @@ using NetDevPack.Mediator;
 using NetDevPack.Messaging;
 using System.Threading.Tasks;
 
-namespace {{projectNamespace}}.Infrastructure.Bus
+namespace {{ProjectNamespace}}.Infrastructure.Bus
 {
     public sealed class InMemoryBus : IMediatorHandler
     {

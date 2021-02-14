@@ -1,10 +1,10 @@
-using CrudExample.Domain.Commands.Inputs.Projects;
-using CrudExample.Domain.Repositories;
+using {{ProjectNamespace}}.Domain.Commands.Inputs.Projects;
+using {{ProjectNamespace}}.Domain.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using NetDevPack.Mediator;
 using System.Threading.Tasks;
 
-namespace {{projectNamespace}}.Api.Controllers
+namespace {{ProjectNamespace}}.Api.Controllers
 {
     [Route("api/[controller]")]
     public class {{className}}Controller : ApiController

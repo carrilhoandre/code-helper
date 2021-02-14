@@ -1,9 +1,9 @@
-using {{projectNamespace}}.Domain.Models;
-using {{projectNamespace}}.Domain.Results.{{plural}};
+using {{ProjectNamespace}}.Domain.Models;
+using {{ProjectNamespace}}.Domain.Results.{{plural}};
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace {{projectNamespace}}.Domain.Repositories
+namespace {{ProjectNamespace}}.Domain.Repositories
 {
     public interface I{{className}}Repository : IBaseRepository<{{className}}>
     {

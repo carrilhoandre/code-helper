@@ -1,14 +1,14 @@
-using {{projectNamespace}}.Domain.Commands.Inputs.{{className}}s;
-using {{projectNamespace}}.Domain.Commands.Inputs.Shared.Inputs;
-using {{projectNamespace}}.Domain.Models;
-using {{projectNamespace}}.Domain.Repositories;
+using {{ProjectNamespace}}.Domain.Commands.Inputs.{{className}}s;
+using {{ProjectNamespace}}.Domain.Commands.Inputs.Shared.Inputs;
+using {{ProjectNamespace}}.Domain.Models;
+using {{ProjectNamespace}}.Domain.Repositories;
 using FluentValidation.Results;
 using MediatR;
 using NetDevPack.Messaging;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace {{projectNamespace}}.Domain.Commands.Handlers
+namespace {{ProjectNamespace}}.Domain.Commands.Handlers
 {
     public class {{className}}Handler : CommandHandler,
         IRequestHandler<Create{{className}}Command, ValidationResult>,

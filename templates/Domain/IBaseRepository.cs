@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace {{projectNamespace}}.Domain.Repositories
+namespace {{ProjectNamespace}}.Domain.Repositories
 {
     public interface IBaseRepository<TEntity> : IRepository<TEntity> where TEntity : IAggregateRoot
     {

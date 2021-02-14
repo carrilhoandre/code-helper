@@ -2,7 +2,6 @@
     "Id": 1,
     "Name": "Payments",
     "ProjectNamespace": "Payments",
-    "EntitiesName": "Entities",
     "Entities": [{
             "Id": 1,
             "Name": "Payment",
@@ -94,8 +93,7 @@
             }
         ]
     }],
-    "DomainLayer": "Domain",
-    "InfraLayer": "Infrastructure",
+    "EntitiesName": "Entities",
     "DataContext": "PagamentosContext",
     "DatabaseName": "PagamentosDb",
     "ConnectionStringName": "conPagamenos",

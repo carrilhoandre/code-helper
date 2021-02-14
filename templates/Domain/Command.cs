@@ -1,6 +1,6 @@
-using {{projectNamespace}}.Domain.Commands.Validations.{{plural}};
+using {{ProjectNamespace}}.Domain.Commands.Validations.{{plural}};
 
-namespace {{projectNamespace}}.Domain.Commands.Inputs.{{plural}}
+namespace {{ProjectNamespace}}.Domain.Commands.Inputs.{{plural}}
 {
     public class {{type}}{{className}}Command : {{className}}Command
     {

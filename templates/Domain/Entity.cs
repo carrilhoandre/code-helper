@@ -1,7 +1,7 @@
 using NetDevPack.Domain;
 using System;
 
-namespace {{projectNamespace}}.Domain.Models
+namespace {{ProjectNamespace}}.Domain.Models
 {
     public {{classType.lower()}} {{className}} : Entity, IAggregateRoot
     {

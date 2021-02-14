@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace {{projectNamespace}}.Api.Controllers
+namespace {{ProjectNamespace}}.Api.Controllers
 {
     [ApiController]
     public abstract class ApiController : ControllerBase
