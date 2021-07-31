@@ -25,6 +25,7 @@ def generate():
     with open('templates.json') as f:
         templates = json.load(f)
 
+    filesCreated = 0
     for t in templates["BaseFileTemplates"]:
         parameters = {}
         for p in t["Parameters"]:
@@ -32,9 +33,11 @@ def generate():
         
         generateFile(env.get_template(t["TemplateFile"]).render(parameters),
                  folders[t["Type"]+ "Folder"] + "/" + t["OutputPath"])
+        
+        filesCreated = filesCreated + 1
 
     result = {}
-    result["filesCreated"] = 1
+    result["filesCreated"] = filesCreated
     return jsonify(result)
     
 
