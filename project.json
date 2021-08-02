@@ -3,12 +3,12 @@
     "Name": "Payments",
     "ProjectNamespace": "Payments",
     "Entities": [{
-            "Id": 1,
-            "Name": "Payment",
-            "Plural": "Payments",
-            "InheritanceClass": "",
-            "Type": "abstract class",
-            "Fields": [{
+            "EntityId": 1,
+            "EntityName": "Payment",
+            "EntityPlural": "Payments",
+            "EntityInheritanceClass": "",
+            "EntityType": "abstract class",
+            "EntityFields": [{
                     "Name": "Number",
                     "Type": "string",
                     "DefaultValue": "Guid.NewGuid().ToString()",
@@ -51,25 +51,25 @@
             ]
         },
         {
-            "Name": "BoletoPayment",
-            "Plural": "BoletoPayments",
-            "Type": "Class",
-            "InheritanceClass": "Payment",
-            "Fields": []
+            "EntityName": "BoletoPayment",
+            "EntityPlural": "BoletoPayments",
+            "EntityType": "Class",
+            "EntityInheritanceClass": "Payment",
+            "EntityFields": []
         },
         {
-            "Name": "CreditCardPayment",
-            "Plural": "CreditCardPayments",
-            "Type": "Class",
-            "InheritanceClass": "Payment",
-            "Fields": []
+            "EntityName": "CreditCardPayment",
+            "EntityPlural": "CreditCardPayments",
+            "EntityType": "Class",
+            "EntityInheritanceClass": "Payment",
+            "EntityFields": []
         },
         {
-            "Name": "DebitCardPayment",
-            "Plural": "DebitCardPayments",
-            "Type": "Class",
-            "InheritanceClass": "Payment",
-            "Fields": []
+            "EntityName": "DebitCardPayment",
+            "EntityPlural": "DebitCardPayments",
+            "EntityType": "Class",
+            "EntityInheritanceClass": "Payment",
+            "EntityFields": []
         }
     ],
     "Enums": [{
@@ -99,7 +99,7 @@
     "ConnectionStringName": "conPagamenos",
     "DefaultVarcharMaxLenght": 255,
     "FluentMappingClassName": "Map",
-    "DotNetVersion": "netcoreapp3.1",
+    "DotNetVersion": "net5.0",
     "InsertMethod": null,
     "UpdateMethod": null,
     "DeleteMethod": null,

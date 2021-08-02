@@ -27,14 +27,20 @@ def generate():
 
     filesCreated = 0
     for t in templates["BaseFileTemplates"]:
-        parameters = {}
-        for p in t["Parameters"]:
-            parameters[p["Name"]] = project[p["Name"]]
-        
+        parameters = project
         generateFile(env.get_template(t["TemplateFile"]).render(parameters),
                  folders[t["Type"]+ "Folder"] + "/" + t["OutputPath"])
         
         filesCreated = filesCreated + 1
+    
+    for e in project["Entities"]:
+        parameters = project
+        parameters.update(e)
+        for t in templates["EntitiesFileTemplates"]:
+            generateFile(env.get_template(t["TemplateFile"]).render(parameters),
+                 folders[t["Type"]+ "Folder"] + "/" + str(t["OutputPath"]).replace("<name>",e["EntityName"]))
+        
+            filesCreated = filesCreated + 1
 
     result = {}
     result["filesCreated"] = filesCreated

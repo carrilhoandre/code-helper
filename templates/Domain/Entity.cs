@@ -3,16 +3,16 @@ using System;
 
 namespace {{ProjectNamespace}}.Domain.Models
 {
-    public {{classType.lower()}} {{className}} : Entity, IAggregateRoot
+    public {{EntityType.lower()}} {{EntityName}} : Entity, IAggregateRoot
     {
-        public {{className}}()
+        public {{EntityName}}()
         {
         }
 
-        protected {{className}}() { }
+        protected {{EntityName}}() { }
 
-        {% for item in fields %}
-        public {{item.Type}} {{item.Name}} {get; private set;}
+        {% for item in EntityFields %}
+        public {{item.Type}} {{item.Name}} { get; private set;}
         {% endfor %}
     }
 }

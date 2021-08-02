@@ -5,7 +5,7 @@
             "Parameters": [{
                 "Name": "ProjectNamespace"
             }],
-            "OutputPath": "Repositories/BaseRepository.cs"
+            "OutputPath": "Repositories/IBaseRepository.cs"
         },
         {
             "TemplateFile": "Domain/DeleteCommand.cs",
@@ -24,12 +24,9 @@
             "OutputPath": "Commands/Validations/Shared/DeleteValidation.cs"
         }
     ],
-    "EntitiesFile": [{
+    "EntitiesFileTemplates": [{
         "TemplateFile": "Domain/Entity.cs",
         "Type": "domain",
-        "Parameters": [{
-            "Name": "ProjectNamespace"
-        }],
-        "OutputPath": "Repositories/BaseRepository.cs"
+        "OutputPath": "Entities/<name>.cs"
     }]
 }

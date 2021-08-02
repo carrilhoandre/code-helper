@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace {{ProjectNamespace}}.Domain.Repositories
 {
-    public interface I{{className}}Repository : IBaseRepository<{{className}}>
+    public interface I{{EntityName}}Repository : IBaseRepository<{{EntityName}}>
     {
-        Task<IEnumerable<{{className}}Result>> List();
+        Task<IEnumerable<{{EntityName}}Result>> List();
     }
 }
